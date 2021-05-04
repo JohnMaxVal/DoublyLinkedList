@@ -1,0 +1,6 @@
+*.h~
+*.c~
+.#*.h
+main.c
+Debug
+Release
