@@ -12,10 +12,10 @@ DoublyLinkedList*
 create_dll_head();
 
 int
-add_node(DoublyLinkedList *dll, void *data);
-
-int
 insert_before(DoublyLinkedList *dll, void *data);
 
+void
+delete_node(DoublyLinkedList *dll, void *data);
+
 DoublyLinkedListNode *
-get_node(DoublyLinkedListNode *node, int num);
+search_node(DoublyLinkedList *dll, void *data);

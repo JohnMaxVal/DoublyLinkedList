@@ -9,28 +9,6 @@ create_dll_head() {
 }
 
 int
-add_node(DoublyLinkedList *dll, void *data) {
-  if(!dll || !data) return -1;
-
-  DoublyLinkedListNode *new_node = (DoublyLinkedListNode*)malloc(sizeof(DoublyLinkedListNode));
-  new_node->data = data;
-  new_node->left = NULL;
-  new_node->right = NULL;
-
-  if(!dll->node) { // Get head
-    dll->node = new_node;
-    return 0;
-  }
-
-  DoublyLinkedListNode *head = dll->node; // Receive header pointer
-  new_node->left = head;
-  head->right = new_node;
-
-  dll->node = new_node;
-  return 1;
-}
-
-int
 insert_before(DoublyLinkedList *dll, void* data) {
   if(!dll || !data) return -1;
 
@@ -52,15 +30,33 @@ insert_before(DoublyLinkedList *dll, void* data) {
   return 1;
 }
 
-DoublyLinkedListNode *
-get_node(DoublyLinkedListNode *head, int num) {
-  DoublyLinkedListNode *current = head;
-
-  while(current != NULL) {
-    if((int)current->data == num)
-      return current;
-    current = current->right;
-  }
+void
+delete_node(DoublyLinkedList *dll, void *data) {
+  DoublyLinkedListNode *head = dll->node;
+  DoublyLinkedListNode *delete = head;
   
-  return current;
+  while(delete != NULL && (int)delete->data != (int)data)
+    delete = delete->right;
+
+  if(!delete) return;
+  
+  DoublyLinkedListNode *left = delete->left;
+  DoublyLinkedListNode *right = delete->right;
+
+  if(head == delete) {
+    head = right;
+    dll->node = head;
+  }
+
+  if(left != NULL)
+    left->right = right;
+  if(right != NULL)
+    right->left = left;
+
+  free(delete);
+}
+
+DoublyLinkedListNode *
+search_node(DoublyLinkedList *dll, void *data) {
+  return NULL;
 }
