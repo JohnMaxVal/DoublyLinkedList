@@ -32,8 +32,10 @@ insert_before(DoublyLinkedList *dll, void* data) {
 
 void
 delete_node(DoublyLinkedList *dll, void *data) {
-  DoublyLinkedListNode *head = dll->node;
-  DoublyLinkedListNode *delete = head;
+  DoublyLinkedListNode **head = &dll->node;
+  DoublyLinkedListNode *delete = *head;
+  /* DoublyLinkedListNode *head = dll->node; */
+  /* DoublyLinkedListNode *delete = head; */
   
   while(delete != NULL && (int)delete->data != (int)data)
     delete = delete->right;
@@ -43,9 +45,9 @@ delete_node(DoublyLinkedList *dll, void *data) {
   DoublyLinkedListNode *left = delete->left;
   DoublyLinkedListNode *right = delete->right;
 
-  if(head == delete) {
-    head = right;
-    dll->node = head;
+  if(*head == delete) {
+    //head = head->right;
+    *head = right;
   }
 
   if(left != NULL)
@@ -58,5 +60,6 @@ delete_node(DoublyLinkedList *dll, void *data) {
 
 DoublyLinkedListNode *
 search_node(DoublyLinkedList *dll, void *data) {
+  
   return NULL;
 }
