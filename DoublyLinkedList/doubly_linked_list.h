@@ -11,11 +11,25 @@ typedef struct doubly_linked_list {
 DoublyLinkedList*
 create_dll_head();
 
+// Last version
+
 int
-insert_before(DoublyLinkedList *dll, void *data);
+insert(DoublyLinkedList *dll, void *data);
 
 void
-delete_node(DoublyLinkedList *dll, void *data);
+delete(DoublyLinkedList *dll, void *data);
 
 DoublyLinkedListNode *
-search_node(DoublyLinkedList *dll, void *data);
+search(DoublyLinkedList *dll, void *data);
+
+// Old version
+/*
+int
+insert_old(DoublyLinkedList *dll, void *data);
+
+void
+delete_old(DoublyLinkedList *dll, void *data);
+
+DoublyLinkedListNode *
+search_old(DoublyLinkedList *dll, void *data);
+*/
