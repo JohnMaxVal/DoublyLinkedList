@@ -1,5 +1,5 @@
 #ifndef __DLL__
-#define __DD__
+#define __DLL__
 
 typedef struct doubly_linked_list_node {
   void *data;
