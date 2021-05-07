@@ -1,3 +1,6 @@
+#ifndef __DLL__
+#define __DD__
+
 typedef struct doubly_linked_list_node {
   void *data;
   struct doubly_linked_list_node *left;
@@ -21,6 +24,8 @@ delete(DoublyLinkedList *dll, void *data);
 
 DoublyLinkedListNode *
 search(DoublyLinkedList *dll, void *data);
+
+#endif
 
 // Old version
 /*
