@@ -44,6 +44,26 @@ delete(DoublyLinkedList *dll, void *data) {
   free(delete);
 }
 
+void
+register_key_match_callback(DoublyLinkedList* dll, int (*key_match)(void*, void*)) {
+  dll->key_match = key_match;
+}
+
+void*
+search_by_key(DoublyLinkedList* dll, void* key) {
+  if(dll == NULL || key == NULL) return NULL;
+
+  DoublyLinkedListNode* head = dll->node;
+
+  while(head) {
+    if(dll->key_match(head->data, key) == 0)
+      return head;
+    head = head->right;
+  }
+  
+  return head;
+}
+
 /*
 
 int

@@ -9,6 +9,7 @@ typedef struct doubly_linked_list_node {
 
 typedef struct doubly_linked_list {
   DoublyLinkedListNode *node;
+  int (*key_match)(void*, void*); // generic function for searching specified data
 } DoublyLinkedList;
 
 DoublyLinkedList*
@@ -24,6 +25,12 @@ delete(DoublyLinkedList *dll, void *data);
 
 DoublyLinkedListNode *
 search(DoublyLinkedList *dll, void *data);
+
+void
+register_key_match_callback(DoublyLinkedList* dll, int (*key_match)(void*, void*));
+
+void*
+search_by_key(DoublyLinkedList* dll, void* key);
 
 #endif
 
