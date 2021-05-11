@@ -57,11 +57,11 @@ search_by_key(DoublyLinkedList* dll, void* key) {
 
   while(head) {
     if(dll->key_match(head->data, key) == 0)
-      return head;
+      return (void *)head->data;
     head = head->right;
   }
   
-  return head;
+  return NULL;
 }
 
 /*

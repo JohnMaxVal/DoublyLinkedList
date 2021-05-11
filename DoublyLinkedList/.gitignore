@@ -1,6 +1,9 @@
 *.h~
 *.c~
 .#*.h
+*.i
+.vscode
 main.c
 Debug
 Release
+TMP
