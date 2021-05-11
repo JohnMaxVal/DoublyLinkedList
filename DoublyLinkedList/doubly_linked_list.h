@@ -33,15 +33,3 @@ void*
 search_by_key(DoublyLinkedList* dll, void* key);
 
 #endif
-
-// Old version
-/*
-int
-insert_old(DoublyLinkedList *dll, void *data);
-
-void
-delete_old(DoublyLinkedList *dll, void *data);
-
-DoublyLinkedListNode *
-search_old(DoublyLinkedList *dll, void *data);
-*/
