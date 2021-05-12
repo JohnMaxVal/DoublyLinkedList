@@ -64,6 +64,66 @@ search_by_key(DoublyLinkedList* dll, void* key) {
   return NULL;
 }
 
+void
+register_compare_callback(DoublyLinkedList* dll, int (*cmp_fn)(void*, void*)) {
+  dll->cmp = cmp_fn;
+}
+
+/*
+  0  - success,
+  -1 - failure
+ */
+int
+sort_insert(DoublyLinkedList* dll, void* data) {
+  if(dll == NULL || data == NULL)
+    return -1;
+
+  if(dll->node == NULL) {
+    insert(dll, data);
+    return 0;
+  }
+
+  DoublyLinkedListNode* head = dll->node;
+  
+  DoublyLinkedListNode* new_node = (DoublyLinkedListNode*)malloc(sizeof(DoublyLinkedListNode));
+  new_node->data = data;
+
+  if(dll->cmp(data, head->data) == 0) { // input data is less than header
+    new_node->left = NULL;
+    new_node->right = head;
+
+    dll->node = head->left = new_node;
+    return 0;
+  }
+
+  if(head->right == NULL) { // input data is the secod node, but greater than dll's node
+    new_node->left = head;
+    new_node->right = NULL;
+
+    head->right = new_node;
+  }
+  else {
+    for(; head->right != NULL; head = head->right)
+      if(dll->cmp(head->data, data) != 0)
+	break;
+
+    if(dll->cmp(new_node->data, head->data) == 0) {
+      new_node->right = head;
+      new_node->left = head->left;
+
+      head->left = head->left->right = new_node;
+    }
+    else {
+      new_node->left = head;
+      new_node->right = NULL;
+      
+      head->right = new_node;
+    }
+  }
+  
+  return 0;
+}
+
 /*
 
 int
