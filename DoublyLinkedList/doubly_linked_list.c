@@ -103,9 +103,12 @@ sort_insert(DoublyLinkedList* dll, void* data) {
     head->right = new_node;
   }
   else {
-    for(; head->right != NULL; head = head->right)
-      if(dll->cmp(head->data, data) != 0)
+    for(; head->right != NULL; head = head->right) {
+      if(dll->cmp(data, head->data) == 0)
 	break;
+      else if(dll->cmp(head->data, data) == -1) // check for equal
+	return -1;
+    }
 
     if(dll->cmp(new_node->data, head->data) == 0) {
       new_node->right = head;
