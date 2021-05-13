@@ -9,3 +9,5 @@ main.o:main.c
 clean:
 	rm dll.o
 	rm main.o
+	rm *.exe
+	rm *.a
