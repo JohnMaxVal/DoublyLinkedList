@@ -1,6 +1,15 @@
 #ifndef __DLL__
 #define __DLL__
 
+#define ITERATE_DLL_BEGIN(listptr, node_ptr)          \
+  {						      \
+    DoublyLinkedListNode* _node_ptr = NULL;           \
+    node_ptr = listptr->node;                         \
+    for(; node_ptr != NULL; node_ptr = _node_ptr) {   \
+      _node_ptr = node_ptr->right;                    \
+
+#define ITERATE_DLL_END }}
+
 typedef struct doubly_linked_list_node {
   void *data;
   struct doubly_linked_list_node *left;
